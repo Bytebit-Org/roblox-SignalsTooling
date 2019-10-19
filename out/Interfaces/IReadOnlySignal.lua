@@ -2,5 +2,5 @@
 -- October 19, 2019, 2:47 PM Pacific Daylight Time
 
 local TS = _G[script];
-local IReadOnlySignal = TS.import(script.Parent, "IReadOnlySignal");
+local IBaseSignal = TS.import(script.Parent, "IBaseSignal");
 return nil;

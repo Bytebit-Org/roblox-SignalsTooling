@@ -1,9 +1,9 @@
-import IBaseSignal = require("./IBaseSignal");
+import IReadOnlySignal = require("./IReadOnlySignal");
 
 /**
  * Defines a signal for creating new branches
  */
-interface ISignal<T extends unknown[]> extends IBaseSignal {
+interface ISignal<T extends unknown[]> extends IReadOnlySignal<T> {
     /**
      * Disconnects all connections
      */
