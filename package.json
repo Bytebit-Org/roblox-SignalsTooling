@@ -1,0 +1,24 @@
+{
+  "name": "@rbxts/roblox-SignalsTooling",
+  "version": "1.0.0",
+  "description": "Simple, base-level tooling for working with signals in Roblox.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bytebit-Org/roblox-SignalsTooling.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bytebit-Org/roblox-SignalsTooling/issues"
+  },
+  "homepage": "https://github.com/Bytebit-Org/roblox-SignalsTooling#readme",
+  "private": false,
+  "devDependencies": {
+    "@rbxts/types": "^1.0.282"
+  }
+}
