@@ -1,4 +1,4 @@
-import ConnectionManager from "./Implementation/ConnectionManager";
+import ConnectionManager = require("./Implementation/ConnectionManager");
 import Signal = require("./Implementation/Signal");
 
 export = {
