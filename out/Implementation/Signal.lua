@@ -1,8 +1,8 @@
 -- Compiled with https://roblox-ts.github.io v0.2.14
--- October 18, 2019, 7:25 PM Pacific Daylight Time
+-- October 18, 2019, 8:01 PM Pacific Daylight Time
 
 local TS = _G[script];
-local exports;
+local exports = {};
 local _0 = TS.import(TS.getModule("services"));
 local RunService, Players = _0.RunService, _0.Players;
 local SignalConnection;
@@ -103,5 +103,5 @@ do
 		return unpack(self._lastFiredArgs);
 	end;
 end;
-exports = Signal;
+exports.Signal = Signal;
 return exports;

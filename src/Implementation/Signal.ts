@@ -25,7 +25,7 @@ class SignalConnection implements ISignalConnection {
 }
 
 /** @inheritdoc */
-class Signal<T extends unknown[]> implements ISignal<T> {
+export class Signal<T extends unknown[]> implements ISignal<T> {
     private _connections = new Array<SignalConnection>();
     private _connectionsHandlersMap = new Map<SignalConnection, (...args: T) => void>();
 
@@ -92,5 +92,3 @@ class Signal<T extends unknown[]> implements ISignal<T> {
         return this._lastFiredArgs! as LuaTuple<T>;
     }
 }
-
-export = Signal;

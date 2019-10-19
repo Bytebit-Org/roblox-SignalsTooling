@@ -11,7 +11,7 @@ declare class SignalConnection implements ISignalConnection {
     Disconnect(): void;
 }
 /** @inheritdoc */
-declare class Signal<T extends unknown[]> implements ISignal<T> {
+export declare class Signal<T extends unknown[]> implements ISignal<T> {
     private _connections;
     private _connectionsHandlersMap;
     private _lastFiredTick;
@@ -25,4 +25,4 @@ declare class Signal<T extends unknown[]> implements ISignal<T> {
     /** @inheritdoc */
     Wait(): LuaTuple<T>;
 }
-export = Signal;
+export {};

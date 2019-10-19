@@ -9,7 +9,7 @@ interface IConnectionInfo {
 }
 
 /** @inheritDoc */
-class ConnectionManager implements IConnectionManager {
+export class ConnectionManager implements IConnectionManager {
     private _connectionData = new Array<IConnectionInfo>();
 
 	/** @inheritDoc */
@@ -57,5 +57,3 @@ class ConnectionManager implements IConnectionManager {
         this._connectionData = new Array<IConnectionInfo>();
     }
 }
-
-export = ConnectionManager;

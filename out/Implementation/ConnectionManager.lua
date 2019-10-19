@@ -1,7 +1,7 @@
 -- Compiled with https://roblox-ts.github.io v0.2.14
--- October 18, 2019, 7:25 PM Pacific Daylight Time
+-- October 18, 2019, 8:01 PM Pacific Daylight Time
 
-local exports;
+local exports = {};
 local ConnectionManager;
 do
 	ConnectionManager = setmetatable({}, {
@@ -62,5 +62,5 @@ do
 		self._connectionData = {};
 	end;
 end;
-exports = ConnectionManager;
+exports.ConnectionManager = ConnectionManager;
 return exports;
