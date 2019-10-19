@@ -1,7 +1,7 @@
 import ConnectionManager from "./Implementation/ConnectionManager";
 import Signal = require("./Implementation/Signal");
-
-export {
-	ConnectionManager,
-	Signal
+declare const _default: {
+    ConnectionManager: typeof ConnectionManager;
+    Signal: typeof Signal;
 };
+export = _default;

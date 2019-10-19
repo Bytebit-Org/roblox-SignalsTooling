@@ -1,6 +1,6 @@
 import { RunService, Players } from "@rbxts/services";
-import ISignalConnection = require("Interfaces/ISignalConnection");
-import ISignal = require("Interfaces/ISignal");
+import ISignalConnection = require("../Interfaces/ISignalConnection");
+import ISignal = require("../Interfaces/ISignal");
 
 /** @inheritdoc */
 class SignalConnection implements ISignalConnection {
