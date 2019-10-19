@@ -1,3 +1,7 @@
-export function makeHello(name: string) {
-	return `Hello from ${name}!`;
-}
+import ConnectionManager from "Implementation/ConnectionManager";
+import Signal = require("Implementation/Signal");
+
+export = {
+	ConnectionManager: ConnectionManager,
+	Signal: Signal
+};

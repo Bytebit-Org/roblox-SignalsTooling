@@ -2,7 +2,8 @@
   "name": "@rbxts/roblox-SignalsTooling",
   "version": "1.0.0",
   "description": "Simple, base-level tooling for working with signals in Roblox.",
-  "main": "index.js",
+  "main": "out/init.lua",
+  "types": "out/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,5 +21,8 @@
   "private": false,
   "devDependencies": {
     "@rbxts/types": "^1.0.282"
+  },
+  "dependencies": {
+    "@rbxts/services": "^1.0.28"
   }
 }
