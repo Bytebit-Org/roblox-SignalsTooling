@@ -5,7 +5,7 @@
   "main": "out/init.lua",
   "types": "out/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+	  "deploy": "rbxtsc; git add --all; git commit -m 'Update generated files';"
   },
   "repository": {
     "type": "git",
