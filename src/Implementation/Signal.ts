@@ -82,6 +82,7 @@ export class Signal<T extends AnyArgs> implements ISignal<T> {
 			RunService.Heartbeat.Wait();
 		}
 
+		// eslint-disable-next-line
 		return this._lastFiredArgs! as LuaTuple<FunctionArguments<T>>;
 	}
 }
