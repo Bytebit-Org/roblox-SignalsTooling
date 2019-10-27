@@ -1,5 +1,5 @@
-import IBaseSignal = require("../Interfaces/IBaseSignal");
-import IConnectionManager = require("../Interfaces/IConnectionManager");
+import { IBaseSignal } from "Interfaces/IBaseSignal";
+import { IConnectionManager } from "Interfaces/IConnectionManager";
 /** @inheritDoc */
 export declare class ConnectionManager implements IConnectionManager {
     private _connectionData;

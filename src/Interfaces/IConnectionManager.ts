@@ -1,9 +1,9 @@
-import IBaseSignal = require("./IBaseSignal");
+import { IBaseSignal } from "./IBaseSignal";
 
 /**
  * Used to easily manage a list of connections as a group
  */
-interface IConnectionManager {
+export interface IConnectionManager {
     /**
      * Adds the signal and function as connection data to the manager
      * @param signal The signal
@@ -33,5 +33,3 @@ interface IConnectionManager {
      */
     Reset(): void;
 }
-
-export = IConnectionManager;

@@ -1,7 +1,7 @@
 /**
  * Defines a particular signal connection
  */
-interface ISignalConnection {
+export interface ISignalConnection {
 	/**
 	 * Whether the connection is still connected
 	 * DO NOT MUTATE
@@ -13,5 +13,3 @@ interface ISignalConnection {
 	 */
     Disconnect(): void;
 }
-
-export = ISignalConnection;

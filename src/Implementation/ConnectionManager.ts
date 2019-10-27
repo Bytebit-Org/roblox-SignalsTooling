@@ -1,6 +1,6 @@
-import ISignalConnection = require("../Interfaces/ISignalConnection");
-import IBaseSignal = require("../Interfaces/IBaseSignal");
-import IConnectionManager = require("../Interfaces/IConnectionManager");
+import { ISignalConnection } from "Interfaces/ISignalConnection";
+import { IBaseSignal } from "Interfaces/IBaseSignal";
+import { IConnectionManager } from "Interfaces/IConnectionManager";
 
 interface IConnectionInfo {
     Connection?: ISignalConnection,

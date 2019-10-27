@@ -1,6 +1,6 @@
 /// <reference types="@rbxts/types" />
-import ISignalConnection = require("../Interfaces/ISignalConnection");
-import ISignal = require("../Interfaces/ISignal");
+import { ISignalConnection } from "Interfaces/ISignalConnection";
+import { ISignal } from "Interfaces/ISignal";
 /** @inheritdoc */
 declare class SignalConnection implements ISignalConnection {
     private readonly _disconnectCallback;

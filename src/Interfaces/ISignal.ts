@@ -1,9 +1,9 @@
-import IReadOnlySignal = require("./IReadOnlySignal");
+import { IReadOnlySignal } from "index";
 
 /**
  * Defines a signal for creating new branches
  */
-interface ISignal<T extends unknown[]> extends IReadOnlySignal<T> {
+export interface ISignal<T extends unknown[]> extends IReadOnlySignal<T> {
     /**
      * Disconnects all connections
      */
@@ -20,5 +20,3 @@ interface ISignal<T extends unknown[]> extends IReadOnlySignal<T> {
      */
     Wait(): LuaTuple<T>;
 }
-
-export = ISignal;
