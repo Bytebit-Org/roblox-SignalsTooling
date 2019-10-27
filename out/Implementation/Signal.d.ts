@@ -8,7 +8,7 @@ declare class SignalConnection implements ISignalConnection {
     constructor(disconnectCallback: () => void);
     Disconnect(): void;
 }
-export declare class Signal<T extends AnyArgs> implements ISignal<T> {
+export declare class Signal<T extends AnyArgs = () => void> implements ISignal<T> {
     private _connections;
     private _connectionsHandlersMap;
     private _lastFiredTick;
