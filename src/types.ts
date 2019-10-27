@@ -1,0 +1,1 @@
+export type AnyArgs = (...args: any[]) => void;

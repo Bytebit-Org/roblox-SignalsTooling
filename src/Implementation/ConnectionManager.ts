@@ -1,17 +1,18 @@
-import { ISignalConnection } from "../Interfaces/ISignalConnection";
-import { IBaseSignal } from "../Interfaces/IBaseSignal";
 import { IConnectionManager } from "../Interfaces/IConnectionManager";
+import { IReadOnlySignal } from "../Interfaces/IReadOnlySignal";
+import { ISignalConnection } from "../Interfaces/ISignalConnection";
+import { AnyArgs } from "../types";
 
 interface IConnectionInfo {
     Connection?: ISignalConnection,
-    HandlerFunction: (...args: any[]) => void,
-    Signal: IBaseSignal
+    HandlerFunction: AnyArgs,
+    Signal: IReadOnlySignal<AnyArgs>
 }
 
 export class ConnectionManager implements IConnectionManager {
     private _connectionData = new Array<IConnectionInfo>();
 
-    public AddConnectionData(signal: IBaseSignal, handlerFunction: (...args: any[]) => void) {
+    public AddConnectionData<T extends AnyArgs>(signal: IReadOnlySignal<T>, handlerFunction: T) {
         this._connectionData.push({
             HandlerFunction: handlerFunction,
             Signal: signal
@@ -27,7 +28,7 @@ export class ConnectionManager implements IConnectionManager {
         }
     }
 
-    public ConnectToEvent(signal: IBaseSignal, handlerFunction: (...args: any[]) => void) {
+    public ConnectToEvent<T extends AnyArgs>(signal: IReadOnlySignal<T>, handlerFunction: T) {
         const connection = signal.Connect(handlerFunction);
         this._connectionData.push({
             Connection: connection,

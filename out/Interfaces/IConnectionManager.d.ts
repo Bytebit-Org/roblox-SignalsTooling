@@ -1,4 +1,4 @@
-import { IBaseSignal } from "./IBaseSignal";
+import { IReadOnlySignal } from "./IReadOnlySignal";
 /**
  * Used to easily manage a list of connections as a group
  */
@@ -8,7 +8,7 @@ export interface IConnectionManager {
      * @param signal The signal
      * @param handlerFunction The handler function
      */
-    AddConnectionData(signal: IBaseSignal, handlerFunction: (...args: any[]) => void): void;
+    AddConnectionData<T extends () => void>(signal: IReadOnlySignal<T>, handlerFunction: T): void;
     /**
      * Connects all inactive connections
      */
@@ -18,7 +18,7 @@ export interface IConnectionManager {
      * @param signal The signal
      * @param handlerFunction The handler function
      */
-    ConnectToEvent(signal: IBaseSignal, handlerFunction: (...args: any[]) => void): void;
+    ConnectToEvent<T extends () => void>(signal: IReadOnlySignal<T>, handlerFunction: T): void;
     /**
      * Disconnects all active connections
      */
