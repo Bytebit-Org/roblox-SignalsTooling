@@ -1,16 +1,11 @@
-import { IBaseSignal } from "Interfaces/IBaseSignal";
-import { IConnectionManager } from "Interfaces/IConnectionManager";
-/** @inheritDoc */
+import { IConnectionManager } from "../Interfaces/IConnectionManager";
+import { IReadOnlySignal } from "../Interfaces/IReadOnlySignal";
+import { AnyArgs } from "../types";
 export declare class ConnectionManager implements IConnectionManager {
     private _connectionData;
-    /** @inheritDoc */
-    AddConnectionData(signal: IBaseSignal, handlerFunction: (...args: any[]) => void): void;
-    /** @inheritDoc */
+    AddConnectionData<T extends AnyArgs>(signal: IReadOnlySignal<T>, handlerFunction: T): void;
     ConnectAll(): void;
-    /** @inheritDoc */
-    ConnectToEvent(signal: IBaseSignal, handlerFunction: (...args: any[]) => void): void;
-    /** @inheritDoc */
+    ConnectToEvent<T extends AnyArgs>(signal: IReadOnlySignal<T>, handlerFunction: T): void;
     DisconnectAll(): void;
-    /** @inheritDoc */
     Reset(): void;
 }

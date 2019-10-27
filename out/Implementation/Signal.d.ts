@@ -1,28 +1,21 @@
 /// <reference types="@rbxts/types" />
-import { ISignalConnection } from "Interfaces/ISignalConnection";
-import { ISignal } from "Interfaces/ISignal";
-/** @inheritdoc */
+import { ISignal } from "../Interfaces/ISignal";
+import { ISignalConnection } from "../Interfaces/ISignalConnection";
+import { AnyArgs } from "../types";
 declare class SignalConnection implements ISignalConnection {
     private readonly _disconnectCallback;
-    /** @inheritdoc */
     Connected: boolean;
     constructor(disconnectCallback: () => void);
-    /** @inheritdoc */
     Disconnect(): void;
 }
-/** @inheritdoc */
-export declare class Signal<T extends unknown[]> implements ISignal<T> {
+export declare class Signal<T extends AnyArgs = () => void> implements ISignal<T> {
     private _connections;
     private _connectionsHandlersMap;
     private _lastFiredTick;
     private _lastFiredArgs?;
-    /** @inheritdoc */
-    Connect(onFiredCallback: (...args: T) => void): SignalConnection;
-    /** @inheritdoc */
+    Connect(onFiredCallback: (...args: FunctionArguments<T>) => void): SignalConnection;
     DisconnectAll(): void;
-    /** @inheritdoc */
-    Fire(...args: T): void;
-    /** @inheritdoc */
-    Wait(): LuaTuple<T>;
+    Fire(...args: FunctionArguments<T>): void;
+    Wait(): LuaTuple<FunctionArguments<T>>;
 }
 export {};

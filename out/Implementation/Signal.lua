@@ -1,10 +1,10 @@
--- Compiled with https://roblox-ts.github.io v0.2.15-commit-6424488.0
--- October 26, 2019, 7:54 PM Pacific Daylight Time
+-- Compiled with https://roblox-ts.github.io v0.2.14
+-- October 26, 2019, 9:56 PM Pacific Daylight Time
 
 local TS = _G[script];
 local exports = {};
 local _0 = TS.import(script, TS.getModule(script, "services"));
-local RunService, Players = _0.RunService, _0.Players;
+local Players, RunService = _0.Players, _0.RunService;
 local SignalConnection;
 do
 	SignalConnection = setmetatable({}, {
