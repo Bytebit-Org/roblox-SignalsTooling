@@ -1,4 +1,4 @@
-import { IReadOnlySignal } from "index";
+import { IReadOnlySignal } from "./IReadOnlySignal";
 
 /**
  * Defines a signal for creating new branches
