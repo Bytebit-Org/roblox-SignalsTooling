@@ -4,7 +4,7 @@ import { IReadOnlySignal } from "./IReadOnlySignal";
 /**
  * Defines a signal for creating new branches
  */
-export interface ISignal<T extends AnyArgs> extends IReadOnlySignal<T> {
+export interface ISignal<T extends AnyArgs = () => void> extends IReadOnlySignal<T> {
 	/**
 	 * Disconnects all connections
 	 */

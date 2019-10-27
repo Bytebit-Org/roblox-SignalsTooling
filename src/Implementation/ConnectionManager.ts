@@ -6,7 +6,7 @@ import { AnyArgs } from "../types";
 interface IConnectionInfo {
 	Connection?: ISignalConnection;
 	HandlerFunction: AnyArgs;
-	Signal: IReadOnlySignal<AnyArgs>;
+	Signal: IReadOnlySignal;
 }
 
 export class ConnectionManager implements IConnectionManager {

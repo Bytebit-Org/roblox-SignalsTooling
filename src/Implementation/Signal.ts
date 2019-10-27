@@ -22,7 +22,7 @@ class SignalConnection implements ISignalConnection {
 	}
 }
 
-export class Signal<T extends AnyArgs> implements ISignal<T> {
+export class Signal<T extends AnyArgs = () => void> implements ISignal<T> {
 	private _connections = new Array<SignalConnection>();
 	private _connectionsHandlersMap = new Map<SignalConnection, (...args: FunctionArguments<T>) => void>();
 
