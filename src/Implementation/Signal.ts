@@ -2,18 +2,15 @@ import { RunService, Players } from "@rbxts/services";
 import { ISignalConnection } from "../Interfaces/ISignalConnection";
 import { ISignal } from "../Interfaces/ISignal";
 
-/** @inheritdoc */
 class SignalConnection implements ISignalConnection {
     private readonly _disconnectCallback: () => void;
 
-    /** @inheritdoc */
     public Connected = false;
 
     constructor(disconnectCallback: () => void) {
         this._disconnectCallback = disconnectCallback;
     }
 
-    /** @inheritdoc */
     public Disconnect(): void {
         if (!this.Connected) {
             return;
@@ -24,7 +21,6 @@ class SignalConnection implements ISignalConnection {
     }
 }
 
-/** @inheritdoc */
 export class Signal<T extends unknown[]> implements ISignal<T> {
     private _connections = new Array<SignalConnection>();
     private _connectionsHandlersMap = new Map<SignalConnection, (...args: T) => void>();
@@ -32,7 +28,6 @@ export class Signal<T extends unknown[]> implements ISignal<T> {
     private _lastFiredTick = 0;
     private _lastFiredArgs?: T;
 
-    /** @inheritdoc */
     public Connect(onFiredCallback: (...args: T) => void): SignalConnection {
         const connection = new SignalConnection(() => {
             if (!this._connectionsHandlersMap.has(connection)) {
@@ -56,7 +51,6 @@ export class Signal<T extends unknown[]> implements ISignal<T> {
         return connection;
     }
 
-    /** @inheritdoc */
     public DisconnectAll() {
         // Clear the handlers mapping first so that we don't get an O(n^2) runtime complexity (see disconnect callback)
         this._connectionsHandlersMap.clear();
@@ -68,7 +62,6 @@ export class Signal<T extends unknown[]> implements ISignal<T> {
         this._connections = new Array<SignalConnection>();
     }
 
-    /** @inheritdoc */
     public Fire(...args: T) {
         this._lastFiredArgs = args;
         this._lastFiredTick = tick();
@@ -81,7 +74,6 @@ export class Signal<T extends unknown[]> implements ISignal<T> {
         }
     }
 
-    /** @inheritdoc */
     public Wait(): LuaTuple<T> {
         const lastFiredTickAtStart = this._lastFiredTick;
 
