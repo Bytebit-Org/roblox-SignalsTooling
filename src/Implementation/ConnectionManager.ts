@@ -1,6 +1,6 @@
-import { ISignalConnection } from "Interfaces/ISignalConnection";
-import { IBaseSignal } from "Interfaces/IBaseSignal";
-import { IConnectionManager } from "Interfaces/IConnectionManager";
+import { ISignalConnection } from "../Interfaces/ISignalConnection";
+import { IBaseSignal } from "../Interfaces/IBaseSignal";
+import { IConnectionManager } from "../Interfaces/IConnectionManager";
 
 interface IConnectionInfo {
     Connection?: ISignalConnection,
@@ -12,7 +12,7 @@ interface IConnectionInfo {
 export class ConnectionManager implements IConnectionManager {
     private _connectionData = new Array<IConnectionInfo>();
 
-	/** @inheritDoc */
+    /** @inheritDoc */
     public AddConnectionData(signal: IBaseSignal, handlerFunction: (...args: any[]) => void) {
         this._connectionData.push({
             HandlerFunction: handlerFunction,
@@ -20,7 +20,7 @@ export class ConnectionManager implements IConnectionManager {
         });
     }
 
-	/** @inheritDoc */
+    /** @inheritDoc */
     public ConnectAll() {
         for (let i = 0; i < this._connectionData.size(); i++) {
             const connectionInfo = this._connectionData[i];
@@ -30,7 +30,7 @@ export class ConnectionManager implements IConnectionManager {
         }
     }
 
-	/** @inheritDoc */
+    /** @inheritDoc */
     public ConnectToEvent(signal: IBaseSignal, handlerFunction: (...args: any[]) => void) {
         const connection = signal.Connect(handlerFunction);
         this._connectionData.push({
@@ -40,7 +40,7 @@ export class ConnectionManager implements IConnectionManager {
         });
     }
 
-	/** @inheritDoc */
+    /** @inheritDoc */
     public DisconnectAll() {
         for (let i = 0; i < this._connectionData.size(); i++) {
             const connectionInfo = this._connectionData[i];
@@ -51,7 +51,7 @@ export class ConnectionManager implements IConnectionManager {
         }
     }
 
-	/** @inheritDoc */
+    /** @inheritDoc */
     public Reset() {
         this.DisconnectAll();
         this._connectionData = new Array<IConnectionInfo>();

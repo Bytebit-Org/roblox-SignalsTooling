@@ -1,18 +1,18 @@
 import { RunService, Players } from "@rbxts/services";
-import { ISignalConnection } from "Interfaces/ISignalConnection";
-import { ISignal } from "Interfaces/ISignal";
+import { ISignalConnection } from "../Interfaces/ISignalConnection";
+import { ISignal } from "../Interfaces/ISignal";
 
 /** @inheritdoc */
 class SignalConnection implements ISignalConnection {
     private readonly _disconnectCallback: () => void;
-    
+
     /** @inheritdoc */
     public Connected = false;
 
     constructor(disconnectCallback: () => void) {
         this._disconnectCallback = disconnectCallback;
     }
-    
+
     /** @inheritdoc */
     public Disconnect(): void {
         if (!this.Connected) {
@@ -33,7 +33,7 @@ export class Signal<T extends unknown[]> implements ISignal<T> {
     private _lastFiredArgs?: T;
 
     /** @inheritdoc */
-    public Connect(onFiredCallback: (...args: T) => void) : SignalConnection {
+    public Connect(onFiredCallback: (...args: T) => void): SignalConnection {
         const connection = new SignalConnection(() => {
             if (!this._connectionsHandlersMap.has(connection)) {
                 return;
@@ -69,7 +69,7 @@ export class Signal<T extends unknown[]> implements ISignal<T> {
     }
 
     /** @inheritdoc */
-    public Fire(...args : T) {
+    public Fire(...args: T) {
         this._lastFiredArgs = args;
         this._lastFiredTick = tick();
 
@@ -82,7 +82,7 @@ export class Signal<T extends unknown[]> implements ISignal<T> {
     }
 
     /** @inheritdoc */
-    public Wait() : LuaTuple<T> {
+    public Wait(): LuaTuple<T> {
         const lastFiredTickAtStart = this._lastFiredTick;
 
         while (this._lastFiredTick === lastFiredTickAtStart) {
