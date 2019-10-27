@@ -10,8 +10,8 @@ export interface IReadOnlySignal<T extends AnyArgs> {
 	 */
 	Connect(onFiredCallback: T): RBXScriptConnection;
 
-    /**
-     * Waits for the signal to be fired and then returns the parameters that were supplied
-     */
+	/**
+	 * Waits for the signal to be fired and then returns the parameters that were supplied
+	 */
 	Wait(): LuaTuple<FunctionArguments<T>>;
 }
