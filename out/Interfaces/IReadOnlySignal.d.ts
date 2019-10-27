@@ -9,4 +9,8 @@ export interface IReadOnlySignal<T extends unknown[]> extends IBaseSignal {
      * @param onFiredCallback The function to associate with the firing of the signal
      */
     Connect(onFiredCallback: (...args: T) => void): RBXScriptConnection;
+    /**
+     * Waits for the signal to be fired and then returns the parameters that were supplied
+     */
+    Wait(): LuaTuple<T>;
 }
