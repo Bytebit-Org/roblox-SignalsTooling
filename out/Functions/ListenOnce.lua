@@ -6,6 +6,7 @@ function exports.listenOnce(signal, callback)
 		connection:Disconnect()
 		callback(...)
 	end)
+	return connection
 end
 
 return exports
