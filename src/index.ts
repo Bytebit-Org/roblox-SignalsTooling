@@ -7,3 +7,9 @@ export { ISignalConnection } from "./Interfaces/ISignalConnection";
 // Classes
 export * from "./Implementation/ConnectionManager";
 export * from "./Implementation/Signal";
+
+// Types
+export { AnyArgs } from "./types";
+
+// Functions
+export * from "./Functions/ListenOnce";
