@@ -1,5 +1,5 @@
--- Compiled with https://roblox-ts.github.io v0.2.15-commit-6424488.0
--- October 27, 2019, 5:44 PM Pacific Daylight Time
+-- Compiled with https://roblox-ts.github.io v0.2.15-commit-7730b16.0
+-- October 28, 2019, 7:32 PM Pacific Daylight Time
 
 local exports = {};
 local ConnectionManager;
@@ -16,14 +16,14 @@ do
 	function ConnectionManager:constructor(...)
 		self._connectionData = {};
 	end;
-	function ConnectionManager:AddConnectionData(signal, handlerFunction)
+	function ConnectionManager:addConnectionData(signal, handlerFunction)
 		local _0 = self._connectionData;
 		_0[#_0 + 1] = {
 			HandlerFunction = handlerFunction;
 			Signal = signal;
 		};
 	end;
-	function ConnectionManager:ConnectAll()
+	function ConnectionManager:connectAll()
 		do
 			local i = 0;
 			while i < #self._connectionData do
@@ -35,7 +35,7 @@ do
 			end;
 		end;
 	end;
-	function ConnectionManager:ConnectToEvent(signal, handlerFunction)
+	function ConnectionManager:connectToEvent(signal, handlerFunction)
 		local connection = signal:Connect(handlerFunction);
 		local _0 = self._connectionData;
 		_0[#_0 + 1] = {
@@ -44,7 +44,7 @@ do
 			Signal = signal;
 		};
 	end;
-	function ConnectionManager:DisconnectAll()
+	function ConnectionManager:disconnectAll()
 		do
 			local i = 0;
 			while i < #self._connectionData do
@@ -57,8 +57,8 @@ do
 			end;
 		end;
 	end;
-	function ConnectionManager:Reset()
-		self:DisconnectAll();
+	function ConnectionManager:reset()
+		self:disconnectAll();
 		self._connectionData = {};
 	end;
 end;

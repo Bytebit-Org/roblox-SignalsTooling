@@ -14,8 +14,8 @@ export declare class Signal<T extends AnyArgs = () => void> implements ISignal<T
     private _lastFiredTick;
     private _lastFiredArgs?;
     Connect(onFiredCallback: (...args: FunctionArguments<T>) => void): SignalConnection;
-    DisconnectAll(): void;
-    Fire(...args: FunctionArguments<T>): void;
+    disconnectAll(): void;
+    fire(...args: FunctionArguments<T>): void;
     Wait(): LuaTuple<FunctionArguments<T>>;
 }
 export {};

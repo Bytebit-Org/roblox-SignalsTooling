@@ -1,5 +1,5 @@
--- Compiled with https://roblox-ts.github.io v0.2.15-commit-6424488.0
--- October 27, 2019, 5:44 PM Pacific Daylight Time
+-- Compiled with https://roblox-ts.github.io v0.2.15-commit-7730b16.0
+-- October 28, 2019, 7:32 PM Pacific Daylight Time
 
 local TS = _G[script];
 local exports = {};
@@ -69,7 +69,7 @@ do
 		_2[#_2 + 1] = connection;
 		return connection;
 	end;
-	function Signal:DisconnectAll()
+	function Signal:disconnectAll()
 		TS.map_clear(self._connectionsHandlersMap);
 		do
 			local i = 0;
@@ -80,7 +80,7 @@ do
 		end;
 		self._connections = {};
 	end;
-	function Signal:Fire(...)
+	function Signal:fire(...)
 		local args = { ... };
 		self._lastFiredArgs = args;
 		self._lastFiredTick = tick();
