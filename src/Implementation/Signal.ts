@@ -52,7 +52,7 @@ export class Signal<T extends AnyArgs = () => void> implements ISignal<T> {
 		return connection;
 	}
 
-	public DisconnectAll() {
+	public disconnectAll() {
 		// Clear the handlers mapping first so that we don't get an O(n^2) runtime complexity (see disconnect callback)
 		this._connectionsHandlersMap.clear();
 
@@ -63,7 +63,7 @@ export class Signal<T extends AnyArgs = () => void> implements ISignal<T> {
 		this._connections = new Array<SignalConnection>();
 	}
 
-	public Fire(...args: FunctionArguments<T>) {
+	public fire(...args: FunctionArguments<T>) {
 		this._lastFiredArgs = args;
 		this._lastFiredTick = tick();
 

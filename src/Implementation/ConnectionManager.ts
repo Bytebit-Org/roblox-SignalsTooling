@@ -12,14 +12,14 @@ interface IConnectionInfo {
 export class ConnectionManager implements IConnectionManager {
 	private _connectionData = new Array<IConnectionInfo>();
 
-	public AddConnectionData<T extends AnyArgs>(signal: IReadOnlySignal<T>, handlerFunction: T) {
+	public addConnectionData<T extends AnyArgs>(signal: IReadOnlySignal<T>, handlerFunction: T) {
 		this._connectionData.push({
 			HandlerFunction: handlerFunction,
 			Signal: signal,
 		});
 	}
 
-	public ConnectAll() {
+	public connectAll() {
 		for (let i = 0; i < this._connectionData.size(); i++) {
 			const connectionInfo = this._connectionData[i];
 			if (connectionInfo.Connection === undefined) {
@@ -28,7 +28,7 @@ export class ConnectionManager implements IConnectionManager {
 		}
 	}
 
-	public ConnectToEvent<T extends AnyArgs>(signal: IReadOnlySignal<T>, handlerFunction: T) {
+	public connectToEvent<T extends AnyArgs>(signal: IReadOnlySignal<T>, handlerFunction: T) {
 		const connection = signal.Connect(handlerFunction);
 		this._connectionData.push({
 			Connection: connection,
@@ -37,7 +37,7 @@ export class ConnectionManager implements IConnectionManager {
 		});
 	}
 
-	public DisconnectAll() {
+	public disconnectAll() {
 		for (let i = 0; i < this._connectionData.size(); i++) {
 			const connectionInfo = this._connectionData[i];
 			if (connectionInfo.Connection !== undefined) {
@@ -47,8 +47,8 @@ export class ConnectionManager implements IConnectionManager {
 		}
 	}
 
-	public Reset() {
-		this.DisconnectAll();
+	public reset() {
+		this.disconnectAll();
 		this._connectionData = new Array<IConnectionInfo>();
 	}
 }

@@ -8,11 +8,11 @@ export interface ISignal<T extends AnyArgs = () => void> extends IReadOnlySignal
 	/**
 	 * Disconnects all connections
 	 */
-	DisconnectAll(): void;
+	disconnectAll(): void;
 
 	/**
 	 * Fires the signal
 	 * @param args The arguments to be used for firing the signal
 	 */
-	Fire(...args: FunctionArguments<T>): void;
+	fire(...args: FunctionArguments<T>): void;
 }

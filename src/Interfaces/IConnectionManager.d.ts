@@ -10,27 +10,27 @@ export interface IConnectionManager {
 	 * @param signal The signal
 	 * @param handlerFunction The handler function
 	 */
-	AddConnectionData<T extends AnyArgs>(signal: IReadOnlySignal<T>, handlerFunction: T): void;
+	addConnectionData<T extends AnyArgs>(signal: IReadOnlySignal<T>, handlerFunction: T): void;
 
 	/**
 	 * Connects all inactive connections
 	 */
-	ConnectAll(): void;
+	connectAll(): void;
 
 	/**
 	 * Connects the handler function to the given signal and add the information to the manager's connection data
 	 * @param signal The signal
 	 * @param handlerFunction The handler function
 	 */
-	ConnectToEvent<T extends AnyArgs>(signal: IReadOnlySignal<T>, handlerFunction: T): void;
+	connectToEvent<T extends AnyArgs>(signal: IReadOnlySignal<T>, handlerFunction: T): void;
 
 	/**
 	 * Disconnects all active connections
 	 */
-	DisconnectAll(): void;
+	disconnectAll(): void;
 
 	/**
 	 * Resets the connection manager by disconnecting all active connections and throwing away all connection data
 	 */
-	Reset(): void;
+	reset(): void;
 }

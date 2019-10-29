@@ -3,6 +3,7 @@ import { ISignalConnection } from "./ISignalConnection";
 
 /**
  * Defines a signal that can be connected to but not fired
+ * Members are PascalCase to match Roblox's RBXScriptSignal
  */
 export interface IReadOnlySignal<T extends AnyArgs = () => void> {
 	/**
