@@ -5,7 +5,7 @@
   "main": "out/init.lua",
   "types": "out/index.d.ts",
   "scripts": {
-    "deploy": "rbxtsc; git add --all; git commit -m 'Update generated files';"
+    "prepublishOnly": "rbxtsc"
   },
   "repository": {
     "type": "git",
@@ -31,5 +31,8 @@
   },
   "dependencies": {
     "@rbxts/services": "^1.0.28"
-  }
+  },
+  "files": [
+    "out"
+  ]
 }
