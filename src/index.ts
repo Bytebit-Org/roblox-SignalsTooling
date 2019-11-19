@@ -13,3 +13,4 @@ export { AnyArgs } from "./types";
 
 // Functions
 export * from "./Functions/ListenOnce";
+export * from "./Functions/WaitForFirstSignal";
