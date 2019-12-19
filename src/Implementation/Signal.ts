@@ -6,7 +6,7 @@ import { AnyArgs } from "../types";
 class SignalConnection implements ISignalConnection {
 	private readonly _disconnectCallback: () => void;
 
-	public Connected = false;
+	public Connected = true;
 
 	constructor(disconnectCallback: () => void) {
 		this._disconnectCallback = disconnectCallback;
@@ -40,9 +40,7 @@ export class Signal<T extends AnyArgs = () => void> implements ISignal<T> {
 			for (let i = 0; i < this._connections.size(); i++) {
 				if (this._connections[i] === connection) {
 					this._connections.remove(i);
-					break;
 				}
-				Players.PlayerAdded.Connect;
 			}
 		});
 
