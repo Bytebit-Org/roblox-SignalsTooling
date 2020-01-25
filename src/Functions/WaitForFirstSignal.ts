@@ -1,11 +1,12 @@
 import { IReadOnlySignal } from "../Interfaces/IReadOnlySignal";
 import { ISignalConnection } from "../Interfaces/ISignalConnection";
 import { Signal } from "../Implementation/Signal";
+import { AnyArgs } from "..";
 
 // Credit to Tiffblocks
 // Adapted to TypeScript by NoahWillCode
-export function waitForFirstSignal(...signals: Array<IReadOnlySignal>) {
-	const finalSignal = new Signal<(firstSignal: IReadOnlySignal, signalArgs: Array<unknown>) => void>();
+export function waitForFirstSignal(...signals: Array<IReadOnlySignal<AnyArgs>>) {
+	const finalSignal = new Signal<(firstSignal: IReadOnlySignal<AnyArgs>, signalArgs: Array<unknown>) => void>();
 	const connections = new Array<ISignalConnection>();
 
 	for (let i = 0; i < signals.size(); i++) {
