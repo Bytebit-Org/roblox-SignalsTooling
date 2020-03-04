@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/Bytebit-Org/roblox-SignalsTooling#readme",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@rbxts/types": "^1.0.282",
     "@typescript-eslint/eslint-plugin": "^2.5.0",
