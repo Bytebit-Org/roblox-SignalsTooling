@@ -10,18 +10,18 @@ interface IConnectionInfo {
 }
 
 export class ConnectionManager implements IConnectionManager {
-	private _connectionData = new Array<IConnectionInfo>();
+	private connectionData = new Array<IConnectionInfo>();
 
 	public addConnectionData<T extends AnyArgs>(signal: IReadOnlySignal<T>, handlerFunction: T) {
-		this._connectionData.push({
+		this.connectionData.push({
 			HandlerFunction: handlerFunction,
 			Signal: signal,
 		});
 	}
 
 	public connectAll() {
-		for (let i = 0; i < this._connectionData.size(); i++) {
-			const connectionInfo = this._connectionData[i];
+		for (let i = 0; i < this.connectionData.size(); i++) {
+			const connectionInfo = this.connectionData[i];
 			if (connectionInfo.Connection === undefined) {
 				connectionInfo.Connection = connectionInfo.Signal.Connect(connectionInfo.HandlerFunction);
 			}
@@ -30,7 +30,7 @@ export class ConnectionManager implements IConnectionManager {
 
 	public connectToEvent<T extends AnyArgs>(signal: IReadOnlySignal<T>, handlerFunction: T) {
 		const connection = signal.Connect(handlerFunction);
-		this._connectionData.push({
+		this.connectionData.push({
 			Connection: connection,
 			HandlerFunction: handlerFunction,
 			Signal: signal,
@@ -38,8 +38,8 @@ export class ConnectionManager implements IConnectionManager {
 	}
 
 	public disconnectAll() {
-		for (let i = 0; i < this._connectionData.size(); i++) {
-			const connectionInfo = this._connectionData[i];
+		for (let i = 0; i < this.connectionData.size(); i++) {
+			const connectionInfo = this.connectionData[i];
 			if (connectionInfo.Connection !== undefined) {
 				connectionInfo.Connection.Disconnect();
 				connectionInfo.Connection = undefined;
@@ -49,6 +49,6 @@ export class ConnectionManager implements IConnectionManager {
 
 	public reset() {
 		this.disconnectAll();
-		this._connectionData = new Array<IConnectionInfo>();
+		this.connectionData = new Array<IConnectionInfo>();
 	}
 }

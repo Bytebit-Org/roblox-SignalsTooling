@@ -4,12 +4,12 @@ import { ISignalConnection } from "../Interfaces/ISignalConnection";
 import { AnyArgs } from "../types";
 
 class SignalConnection implements ISignalConnection {
-	private readonly _disconnectCallback: () => void;
+	private readonly disconnectCallback: () => void;
 
 	public Connected = true;
 
 	constructor(disconnectCallback: () => void) {
-		this._disconnectCallback = disconnectCallback;
+		this.disconnectCallback = disconnectCallback;
 	}
 
 	public Disconnect(): void {
@@ -17,56 +17,79 @@ class SignalConnection implements ISignalConnection {
 			return;
 		}
 
-		this._disconnectCallback();
+		this.disconnectCallback();
 		this.Connected = false;
 	}
 }
 
 export class Signal<T extends AnyArgs = () => void> implements ISignal<T> {
-	private _connections = new Array<SignalConnection>();
-	private _connectionsHandlersMap = new Map<SignalConnection, (...args: FunctionArguments<T>) => void>();
+	private connections = new Array<SignalConnection>();
+	private connectionsHandlersMap = new Map<SignalConnection, (...args: FunctionArguments<T>) => void>();
 
-	private _lastFiredTick = 0;
-	private _lastFiredArgs?: FunctionArguments<T>;
+	private lastFiredTick = 0;
+	private lastFiredArgs?: FunctionArguments<T>;
+
+	private isDestroyed = false;
 
 	public Connect(onFiredCallback: (...args: FunctionArguments<T>) => void): SignalConnection {
+		if (this.isDestroyed) {
+			throw `Attempt to connect to a destroyed signal`;
+		}
+
 		const connection = new SignalConnection(() => {
-			if (!this._connectionsHandlersMap.has(connection)) {
+			if (!this.connectionsHandlersMap.has(connection)) {
 				return;
 			}
 
-			this._connectionsHandlersMap.delete(connection);
+			this.connectionsHandlersMap.delete(connection);
 
-			for (let i = 0; i < this._connections.size(); i++) {
-				if (this._connections[i] === connection) {
-					this._connections.remove(i);
+			for (let i = 0; i < this.connections.size(); i++) {
+				if (this.connections[i] === connection) {
+					this.connections.remove(i);
 				}
 			}
 		});
 
-		this._connectionsHandlersMap.set(connection, onFiredCallback);
-		this._connections.push(connection);
+		this.connectionsHandlersMap.set(connection, onFiredCallback);
+		this.connections.push(connection);
 
 		return connection;
 	}
 
 	public disconnectAll() {
-		// Clear the handlers mapping first so that we don't get an O(n^2) runtime complexity (see disconnect callback)
-		this._connectionsHandlersMap.clear();
-
-		for (let i = 0; i < this._connections.size(); i++) {
-			this._connections[i].Disconnect();
+		if (this.isDestroyed) {
+			throw `Attempt to disconnect connections to a destroyed signal`;
 		}
 
-		this._connections = new Array<SignalConnection>();
+		// Clear the handlers mapping first so that we don't get an O(n^2) runtime complexity (see disconnect callback)
+		this.connectionsHandlersMap.clear();
+
+		for (let i = 0; i < this.connections.size(); i++) {
+			this.connections[i].Disconnect();
+		}
+
+		this.connections = new Array<SignalConnection>();
+	}
+
+	public destroy() {
+		if (this.isDestroyed) {
+			return;
+		}
+
+		this.disconnectAll();
+		this.isDestroyed = true;
 	}
 
 	public fire(...args: FunctionArguments<T>) {
-		this._lastFiredArgs = args;
-		this._lastFiredTick = tick();
+		if (this.isDestroyed) {
+			throw `Attempt to fire a destroyed signal`;
+		}
 
-		for (let i = 0; i < this._connections.size(); i++) {
-			const handlerFunction = this._connectionsHandlersMap.get(this._connections[i]);
+		this.lastFiredArgs = args;
+		this.lastFiredTick = tick();
+
+		for (let i = 0; i < this.connections.size(); i++) {
+			const handlerFunction = this.connectionsHandlersMap.get(this.connections[i]);
 			if (handlerFunction !== undefined) {
 				coroutine.wrap(handlerFunction)(...args);
 			}
@@ -74,13 +97,17 @@ export class Signal<T extends AnyArgs = () => void> implements ISignal<T> {
 	}
 
 	public Wait(): LuaTuple<FunctionArguments<T>> {
-		const lastFiredTickAtStart = this._lastFiredTick;
+		if (this.isDestroyed) {
+			throw `Attempt to for a destroyed signal`;
+		}
 
-		while (this._lastFiredTick === lastFiredTickAtStart) {
+		const lastFiredTickAtStart = this.lastFiredTick;
+
+		while (this.lastFiredTick === lastFiredTickAtStart) {
 			RunService.Heartbeat.Wait();
 		}
 
 		// eslint-disable-next-line
-		return this._lastFiredArgs! as LuaTuple<FunctionArguments<T>>;
+		return this.lastFiredArgs! as LuaTuple<FunctionArguments<T>>;
 	}
 }

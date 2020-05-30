@@ -30,6 +30,7 @@
     "prettier": "^1.18.2"
   },
   "dependencies": {
+    "@rbxts/dumpster": "^1.0.8",
     "@rbxts/services": "^1.0.28"
   },
   "files": [
