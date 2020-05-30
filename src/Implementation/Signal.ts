@@ -108,6 +108,6 @@ export class Signal<T extends AnyArgs = () => void> implements ISignal<T> {
 		}
 
 		// eslint-disable-next-line
-		return this.lastFiredArgs! as LuaTuple<FunctionArguments<T>>;
+		return this.lastFiredArgs! as unknown as LuaTuple<FunctionArguments<T>>;
 	}
 }
