@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/signals-tooling",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple, base-level tooling for working with signals in Roblox.",
   "main": "out/init.lua",
   "types": "out/index.d.ts",
@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/Bytebit-Org/roblox-SignalsTooling#readme",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@rbxts/types": "^1.0.282",
     "@typescript-eslint/eslint-plugin": "^2.5.0",
