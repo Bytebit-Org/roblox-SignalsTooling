@@ -24,4 +24,7 @@
 	"eslint.packageManager": "npm",
 	"eslint.run": "onType",
 	"eslint.autoFixOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
 }
