@@ -1,4 +1,4 @@
-import { Players, RunService } from "@rbxts/services";
+import { RunService } from "@rbxts/services";
 import { ISignal } from "../Interfaces/ISignal";
 import { ISignalConnection } from "../Interfaces/ISignalConnection";
 import { AnyArgs } from "../types";
@@ -33,7 +33,7 @@ export class Signal<T extends AnyArgs = () => void> implements ISignal<T> {
 
 	public Connect(onFiredCallback: (...args: FunctionArguments<T>) => void): SignalConnection {
 		if (this.isDestroyed) {
-			throw `Attempt to connect to a destroyed signal`;
+			throw `Cannot connect to a destroyed signal`;
 		}
 
 		const connection = new SignalConnection(() => {
@@ -58,7 +58,7 @@ export class Signal<T extends AnyArgs = () => void> implements ISignal<T> {
 
 	public disconnectAll() {
 		if (this.isDestroyed) {
-			throw `Attempt to disconnect connections to a destroyed signal`;
+			throw `Cannot disconnect connections to a destroyed signal`;
 		}
 
 		// Clear the handlers mapping first so that we don't get an O(n^2) runtime complexity (see disconnect callback)
@@ -82,7 +82,7 @@ export class Signal<T extends AnyArgs = () => void> implements ISignal<T> {
 
 	public fire(...args: FunctionArguments<T>) {
 		if (this.isDestroyed) {
-			throw `Attempt to fire a destroyed signal`;
+			throw `Cannot fire a destroyed signal`;
 		}
 
 		this.lastFiredArgs = args;
@@ -98,7 +98,7 @@ export class Signal<T extends AnyArgs = () => void> implements ISignal<T> {
 
 	public Wait(): LuaTuple<FunctionArguments<T>> {
 		if (this.isDestroyed) {
-			throw `Attempt to for a destroyed signal`;
+			throw `Cannot wait for a destroyed signal`;
 		}
 
 		const lastFiredTickAtStart = this.lastFiredTick;
