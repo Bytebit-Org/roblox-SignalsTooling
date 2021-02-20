@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/signals-tooling",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Simple, base-level tooling for working with signals in Roblox.",
   "main": "out/init.lua",
   "types": "out/index.d.ts",
