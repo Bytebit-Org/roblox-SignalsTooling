@@ -1,4 +1,4 @@
-import { Players, RunService } from "@rbxts/services";
+import { RunService } from "@rbxts/services";
 import { ISignal } from "../Interfaces/ISignal";
 import { ISignalConnection } from "../Interfaces/ISignalConnection";
 import { AnyArgs } from "../types";
@@ -24,12 +24,12 @@ class SignalConnection implements ISignalConnection {
 
 export class Signal<T extends AnyArgs = () => void> implements ISignal<T> {
 	private _connections = new Array<SignalConnection>();
-	private _connectionsHandlersMap = new Map<SignalConnection, (...args: FunctionArguments<T>) => void>();
+	private _connectionsHandlersMap = new Map<SignalConnection, (...args: Parameters<T>) => void>();
 
 	private _lastFiredTick = 0;
-	private _lastFiredArgs?: FunctionArguments<T>;
+	private _lastFiredArgs?: Parameters<T>;
 
-	public Connect(onFiredCallback: (...args: FunctionArguments<T>) => void): SignalConnection {
+	public Connect(onFiredCallback: (...args: Parameters<T>) => void): SignalConnection {
 		const connection = new SignalConnection(() => {
 			if (!this._connectionsHandlersMap.has(connection)) {
 				return;
@@ -61,7 +61,7 @@ export class Signal<T extends AnyArgs = () => void> implements ISignal<T> {
 		this._connections = new Array<SignalConnection>();
 	}
 
-	public fire(...args: FunctionArguments<T>) {
+	public fire(...args: Parameters<T>) {
 		this._lastFiredArgs = args;
 		this._lastFiredTick = tick();
 
@@ -73,14 +73,14 @@ export class Signal<T extends AnyArgs = () => void> implements ISignal<T> {
 		}
 	}
 
-	public Wait(): LuaTuple<FunctionArguments<T>> {
+	public Wait(): LuaTuple<Parameters<T>> {
 		const lastFiredTickAtStart = this._lastFiredTick;
 
 		while (this._lastFiredTick === lastFiredTickAtStart) {
-			RunService.Heartbeat.Wait();
+			RunService.PostSimulation.Wait();
 		}
 
 		// eslint-disable-next-line
-		return this._lastFiredArgs! as LuaTuple<FunctionArguments<T>>;
+		return this._lastFiredArgs! as unknown as LuaTuple<Parameters<T>>;
 	}
 }

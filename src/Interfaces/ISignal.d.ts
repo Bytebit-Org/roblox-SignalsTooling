@@ -14,5 +14,5 @@ export interface ISignal<T extends AnyArgs = () => void> extends IReadOnlySignal
 	 * Fires the signal
 	 * @param args The arguments to be used for firing the signal
 	 */
-	fire(...args: FunctionArguments<T>): void;
+	fire(...args: Parameters<T>): void;
 }

@@ -15,5 +15,5 @@ export interface IReadOnlySignal<T extends AnyArgs = () => void> {
 	/**
 	 * Waits for the signal to be fired and then returns the parameters that were supplied
 	 */
-	Wait(): LuaTuple<FunctionArguments<T>>;
+	Wait(): LuaTuple<Parameters<T>>;
 }
