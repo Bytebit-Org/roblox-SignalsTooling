@@ -23,6 +23,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "@rbxts/compiler-types": "^1.0.0-beta.15.1",
     "@rbxts/types": "^1.0.453",
     "@typescript-eslint/eslint-plugin": "^2.5.0",
     "@typescript-eslint/parser": "^2.5.0",
@@ -33,7 +34,7 @@
     "prettier": "^1.18.2"
   },
   "dependencies": {
-    "@rbxts/compiler-types": "^1.0.0-beta.15.1",
+    "@rbxts/dumpster": "^1.0.8",
     "@rbxts/services": "^1.0.28"
   },
   "files": [
