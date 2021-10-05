@@ -103,7 +103,7 @@ export class Signal<T extends AnyArgs = () => void> implements ISignal<T> {
 		const lastFiredTickAtStart = this.lastFiredTick;
 
 		while (this.lastFiredTick === lastFiredTickAtStart) {
-			RunService.PostSimulation.Wait();
+			RunService.Stepped.Wait();
 		}
 
 		// eslint-disable-next-line
