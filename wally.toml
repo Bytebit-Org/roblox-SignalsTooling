@@ -1,0 +1,9 @@
+[package]
+name = "bytebit/server-networked-values"
+description = "Simple, base-level tooling for working with signals in Roblox."
+version = "1.0.7"
+license = "MIT"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+
+[dependencies]

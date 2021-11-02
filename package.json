@@ -1,6 +1,6 @@
 {
 	"name": "@rbxts/signals-tooling",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "Simple, base-level tooling for working with signals in Roblox.",
 	"main": "out/init.lua",
 	"types": "out/index.d.ts",
@@ -12,8 +12,8 @@
 		"url": "git+https://github.com/Bytebit-Org/roblox-SignalsTooling.git"
 	},
 	"keywords": [],
-	"author": "",
-	"license": "ISC",
+	"author": "Bytebit",
+	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/Bytebit-Org/roblox-SignalsTooling/issues"
 	},
