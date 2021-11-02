@@ -11,7 +11,7 @@ npm i @rbxts/signals-tooling
 ### Wally
 [Wally](https://github.com/UpliftGames/wally/) users can install this package by adding the following line to their `Wally.toml` under `[dependencies]`:
 ```
-FiniteStateMachine = "bytebit/signals-tooling@0.0.11"
+FiniteStateMachine = "bytebit/signals-tooling@1.0.8"
 ```
 
 Then just run `wally install`.
