@@ -3,6 +3,6 @@
 registry = "test"
 
 [[package]]
-name = "bytebit/server-networked-values"
-version = "1.0.7"
+name = "bytebit/signals-tooling"
+version = "1.0.8"
 dependencies = []
